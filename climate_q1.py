@@ -6,7 +6,7 @@ conn = sqlite3.connect('climate.db')
 cursor = conn.cursor()
 
 #get data form database
-cursor.execute('SELECT year, co2, temp FROM your_table_name')
+cursor.execute('SELECT year, co2, temperature FROM ClimateData')
 data = cursor.fetchall()
 
 conn.close()
@@ -14,12 +14,12 @@ conn.close()
 #add data in datalist
 years = []
 co2 = []
-temp = []
+temperature = []
 
 for row in data:
     years.append(row[0])
     co2.append(row[1])
-    temp.append(row[2])
+    temperature.append(row[2])
 
 #drawing graph
 plt.subplot(2, 1, 1)
@@ -29,7 +29,7 @@ plt.ylabel("[CO2]")
 plt.xlabel("Year (decade)") 
 
 plt.subplot(2, 1, 2)
-plt.plot(years, temp, 'r*-') 
+plt.plot(years, temperature, 'r*-')
 plt.ylabel("Temp (C)") 
 plt.xlabel("Year (decade)")
 
